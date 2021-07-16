@@ -1,0 +1,18 @@
+.container{
+    transition: all 0.2s ease;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content{
+    transition: all 0.2s ease;
+    width: 100%;
+    max-width: 400px;
+   
+    margin: 30px;
+    background: whitesmoke;
+    border-radius: 4px;
+    padding: 20px;  
+}
