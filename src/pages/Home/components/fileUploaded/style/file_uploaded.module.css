@@ -33,7 +33,7 @@
     color: #999;
     margin-top: 5px;
 }
-.fileinfo > div > span > button{
+.fileinfo > div > span >span button{
     border: 0;
     background: transparent;
     color: #FF4C4C;

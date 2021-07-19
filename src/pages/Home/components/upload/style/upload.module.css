@@ -4,6 +4,12 @@
     border-radius: 4px;
     cursor: pointer;
     transition:  height 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
 }
 .dragDefault{
     border-color: #ddd;

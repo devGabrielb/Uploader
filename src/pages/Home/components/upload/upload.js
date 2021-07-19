@@ -2,7 +2,11 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
+import Button from '../../../../components/Button/Button';
 import UploadStyle from './style/upload.module.css';
+import { showToast } from '../../../../services/common-service';
+import * as BlipPortalToastTypes from '../../../../constants/blip-portal-toast-types';
+import uploadIcon from '../../../../assets/images/svg/outline_upload.svg';
 
 const Upload = (props) => {
     const { onUpload } = props;
@@ -13,7 +17,15 @@ const Upload = (props) => {
         UploadStyle.colorSuccess
     ];
 
-    const dragResult = (isDragActive, isDragReject, acceptedFiles) => {
+    const isFileReject = () => {
+        console.log('opa');
+        showToast({
+            type: BlipPortalToastTypes.danger,
+            message: 'Mensagem de Teste'
+        });
+    };
+
+    const dragResult = (isDragActive, isDragReject) => {
         if (isDragActive) {
             return UploadStyle.dragActive;
         }
@@ -59,7 +71,7 @@ const Upload = (props) => {
         accept: '.csv',
         onDropAccepted: onUpload,
         maxFiles: 1,
-        onDropRejected: () => {}
+        onDropRejected: isFileReject
     });
 
     return (
@@ -72,9 +84,13 @@ const Upload = (props) => {
                     acceptedFiles
                 )}`}
             >
-                <button></button>
                 <input {...getInputProps()} />
                 {renderDragMessage(isDragActive, isDragReject)}
+                <Button
+                    icon="upload"
+                    variant="ghost"
+                    text={'Selecionar um arquivo'}
+                />
             </div>
         </div>
     );

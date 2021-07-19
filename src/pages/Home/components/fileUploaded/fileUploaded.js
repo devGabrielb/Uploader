@@ -29,7 +29,15 @@ const FileUploaded = ({ uploadedFile, sendFile, onDelete }) => {
                             <strong>{uploadedFile.name}</strong>
                             <span>
                                 {uploadedFile.readablesize}
-                                <button onClick={onDelete}>Excluir</button>
+                                <span>
+                                    {uploadedFile.progress <= 0 ? (
+                                        <button onClick={onDelete}>
+                                            Excluir
+                                        </button>
+                                    ) : (
+                                        <div></div>
+                                    )}
+                                </span>
                             </span>
                         </div>
                     </div>
@@ -41,6 +49,7 @@ const FileUploaded = ({ uploadedFile, sendFile, onDelete }) => {
                                     path: { stroke: '#4786F1' }
                                 }}
                                 strokeWidth={10}
+                                text={`${uploadedFile.progress}%`}
                                 value={uploadedFile.progress}
                             />
                         </div>
