@@ -7,11 +7,10 @@ import FileUpladedStyles from './style/file_uploaded.module.css';
 import logo from '../../../../assets/images/svg/csv.svg';
 import ballon from '../../../../assets/images/svg/blip-balloon.svg';
 
-const FileUploaded = ({ uploadedFile }) => {
+const FileUploaded = ({ uploadedFile, sendFile, onDelete }) => {
     const [isLoaded, setLoaded] = useState(true);
-
     useEffect(() => {
-        setTimeout(() => setLoaded(false), 6000);
+        setTimeout(() => setLoaded(false), 3000);
     }, []);
     return isLoaded ? (
         <div className={FileUpladedStyles.loading}>
@@ -30,24 +29,31 @@ const FileUploaded = ({ uploadedFile }) => {
                             <strong>{uploadedFile.name}</strong>
                             <span>
                                 {uploadedFile.readablesize}
-                                <button onClick={() => {}}>Excluir</button>
+                                <button onClick={onDelete}>Excluir</button>
                             </span>
                         </div>
                     </div>
-                    {/* <div className={FileUpladedStyles.container}>
-                    <CircularProgressbar
-                        styles={{
-                            root: { width: 24 },
-                            path: { stroke: '#4786F1' }
-                        }}
-                        strokeWidth={10}
-                        value={60}
-                    />
-                </div> */}
+                    {uploadedFile.progress > 0 ? (
+                        <div className={FileUpladedStyles.container}>
+                            <CircularProgressbar
+                                styles={{
+                                    root: { width: 24 },
+                                    path: { stroke: '#4786F1' }
+                                }}
+                                strokeWidth={10}
+                                value={uploadedFile.progress}
+                            />
+                        </div>
+                    ) : (
+                        <div className={FileUpladedStyles.submit}>
+                            <Button
+                                onClick={sendFile}
+                                variant="ghost"
+                                text={'Enviar'}
+                            />
+                        </div>
+                    )}
                 </div>
-            </div>
-            <div className={FileUpladedStyles.submit}>
-                <Button variant="ghost" text={'Enviar'} />
             </div>
         </>
     );
