@@ -14,8 +14,6 @@ const Upload = (props) => {
     ];
 
     const dragResult = (isDragActive, isDragReject, acceptedFiles) => {
-        console.log({ isDragActive, isDragReject, acceptedFiles });
-
         if (isDragActive) {
             return UploadStyle.dragActive;
         }
@@ -57,7 +55,12 @@ const Upload = (props) => {
         isDragActive,
         acceptedFiles,
         isDragReject
-    } = useDropzone({ accept: '.csv', onDropAccepted: onUpload, maxFiles: 1 });
+    } = useDropzone({
+        accept: '.csv',
+        onDropAccepted: onUpload,
+        maxFiles: 1,
+        onDropRejected: () => {}
+    });
 
     return (
         <div>
@@ -69,6 +72,7 @@ const Upload = (props) => {
                     acceptedFiles
                 )}`}
             >
+                <button></button>
                 <input {...getInputProps()} />
                 {renderDragMessage(isDragActive, isDragReject)}
             </div>
